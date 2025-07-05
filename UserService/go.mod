@@ -1,4 +1,4 @@
-module domic.grpc.user
+module github.com/HasanProgrammer/Domic-GrpcService-Go/domic.grpc.user
 
 go 1.23.0
 
