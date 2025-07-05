@@ -1,0 +1,28 @@
+1 . install global packages for golang in os
+
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+---------------------------------------------------------------------
+
+2 . download [ protoc ] for os ( that's compiler for proto files )
+
+download path : https://github.com/protocolbuffers/protobuf/releases/tag/v31.1 or other versions
+
+---------------------------------------------------------------------
+
+3 . run command below for root directory that exist proto file
+
+command : protoc --go_out=. --go-grpc_out=. [proto_file_name].proto
+
+---------------------------------------------------------------------
+
+4 . important point
+
+point : must be inside [ proto ] file exist order ( option go_package = "package_name" )
+
+---------------------------------------------------------------------
+
+5 . create usable package
+
+for this handle, just push project into remote source controlle like github

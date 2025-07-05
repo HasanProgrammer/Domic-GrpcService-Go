@@ -1,0 +1,174 @@
+syntax = "proto3";
+
+option go_package = "compile/service";
+
+/*-------------------------------------------------------------------*/
+
+//CheckExist
+
+message CheckExistRequest {
+  String target_id = 1;
+}
+
+message CheckExistResponse {
+  bool result = 1;
+}
+
+/*-------------------------------------------------------------------*/
+
+//ReadOne
+
+message ReadOneRequest {
+  String target_id = 1;
+}
+
+message ReadOneResponse {
+  int32 code               = 1;
+  string message           = 2;
+  ReadOneResponseBody body = 3;
+}
+
+message ReadOneResponseBody {
+  string user = 1; //Serialized
+}
+
+/*-------------------------------------------------------------------*/
+
+//ReadAllPaginate
+
+message ReadAllPaginatedRequest {
+  Int32 page_number    = 1;
+  Int32 count_per_page = 2;
+  String first_name    = 3;
+  String last_name     = 4;
+  String username      = 5;
+  String phone_number  = 6;
+  String email         = 7;
+}
+
+message ReadAllPaginatedResponse {
+  int32 code                       = 1;
+  string message                   = 2;
+  ReadAllPaginatedResponseBody body = 3;
+}
+
+message ReadAllPaginatedResponseBody {
+  string users = 1; //Serialized
+}
+
+/*-------------------------------------------------------------------*/
+
+//Create
+
+message CreateRequest {
+  String first_name   = 1;
+  String last_name    = 2;
+  String username     = 3;
+  String password     = 4;
+  String phone_number = 5;
+  String email        = 6;
+  String description  = 7;
+  String roles        = 8;
+  String permissions  = 9;
+}
+
+message CreateResponse {
+  int32 code              = 1;
+  string message          = 2;
+  CreateResponseBody body = 3;
+}
+
+message CreateResponseBody {
+  string user_id = 1;
+}
+
+/*-------------------------------------------------------------------*/
+
+//Update
+
+message UpdateRequest {
+  String target_id    = 1;
+  String username     = 2;
+  String password     = 3;
+  String first_name   = 4;
+  String last_name    = 5;
+  String phone_number = 6;
+  String email        = 7;
+  String description  = 8;
+  String roles        = 9;
+  String permissions  = 10;
+  bool is_active      = 11;
+}
+
+message UpdateResponse {
+  int32 code              = 1;
+  string message          = 2;
+  UpdateResponseBody body = 3;
+}
+
+message UpdateResponseBody {
+  string user_id = 1;
+}
+
+/*-------------------------------------------------------------------*/
+
+//Active
+
+message ActiveRequest {
+  String target_id = 1;
+}
+
+message ActiveResponse {
+  int32 code              = 1;
+  string message          = 2;
+  ActiveResponseBody body = 3;
+}
+
+message ActiveResponseBody {
+  string user_id = 1;
+}
+
+/*-------------------------------------------------------------------*/
+
+//InActive
+
+message InActiveRequest {
+  String target_id = 1;
+}
+
+message InActiveResponse {
+  int32 code                = 1;
+  string message            = 2;
+  InActiveResponseBody body = 3;
+}
+
+message InActiveResponseBody {
+  string user_id = 1;
+}
+
+/*-------------------------------------------------------------------*/
+
+//Global
+
+message String { string value = 1; }
+message Int32  { int32  value = 1; }
+
+/*-------------------------------------------------------------------*/
+
+service UserService {
+
+  rpc Create(CreateRequest) returns (CreateResponse) {};
+
+  rpc Update(UpdateRequest) returns (UpdateResponse) {};
+
+  rpc Active(ActiveRequest) returns (ActiveResponse) {};
+
+  rpc InActive(InActiveRequest) returns (InActiveResponse) {};
+
+  rpc CheckExist(CheckExistRequest) returns (CheckExistResponse) {}
+
+  rpc ReadOne(ReadOneRequest) returns (ReadOneResponse) {};
+
+  rpc ReadAllPaginated(ReadAllPaginatedRequest) returns (ReadAllPaginatedResponse) {};
+
+}
