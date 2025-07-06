@@ -1,4 +1,4 @@
-module github.com/HasanProgrammer/grpcservice/userservice
+module github.com/HasanProgrammer/Domic-GrpcService-Go/UserService
 
 go 1.23.0
 
